@@ -24,16 +24,11 @@
 
 
     if(isset($_REQUEST["submit"])){
-      // Variables for the output and the web form below.
       $out_value = "";
       $username = $_REQUEST['username'];
       $password = $_REQUEST['password'];
 
-      // The following is the core part of this script where we connect PHP
-      // and SQL.
-      // Check that the user entered data in the form.
       if(!empty($username) && !empty($password)){
-        // If so, prepare SQL query with the data.
         $sql_query = "INSERT INTO users (username, password)
         VALUES('$username', '$password')";
 
@@ -42,7 +37,7 @@
         }
       }
         $out_value = "Submit test";
-      }
+    }
 
     $conn->close();
   ?>
@@ -59,8 +54,52 @@
                 echo $out_value;
               }
             ?></p>
-            </div>
+            <h1>Log In</h1>
+                <h3>Username</h3><input type="text" name="username_login" placeholder="Username">
+                <h3>Password</h3><input type="text" name="password_login" placeholder="Password">
+                <button name="login"> Login </button>
+                <p><?php 
+                  $servername = "localhost";
+                  $username = "root";
+                  $password = "";
+                  $dbname = "hw2p1";
 
+                  $conn = new mysqli($servername, $username, $password, $dbname);
+
+                  if ($conn->connect_error) {
+                    die("Connection failed: " . $conn->connect_error);
+                  }
+
+                if(isset($_REQUEST["login"])){
+                  $username_login = $_REQUEST['username_login'];
+                  $password_login = $_REQUEST['password_login'];
+
+
+
+                  $sql_query = " SELECT COUNT(*) AS valid FROM `users` WHERE `username` = '$username_login' and `password` = '$password_login' ";
+
+
+                  $check_user = mysqli_query($conn, $sql_query);  
+
+                  $row = mysqli_fetch_assoc($check_user);
+
+                  if ($row['valid'] == "1") {
+                    $song_query = " SELECT `song` FROM `ratings` WHERE `username` = '$username_login' ";
+                    $song_results = mysqli_query($conn, $song_query);  
+                    foreach($song_results as $row) {
+                      echo '<p>'.$row['song'] .'</p>';
+                    }
+                  }
+                  else {
+                    echo 'Incorrect Password or Username';
+                  }
+                  
+                    
+                }
+
+                  
+            ?></p><br>
+            </div>
         </form>
     </div>
 </body>

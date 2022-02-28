@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Homework 2</title>
+</head>
+<body>
+
+    <nav>
+      <div  class="cloud-container" data-aos="fade-in" data-aos-duration="2000">
+        <div class="cloud">
+            <div class="nav-logo">
+                <img alt="website-logo" src="./images/mnote.png" alt="" />
+                <p> PRO </p>
+            </div>
+        </div>    
+      </div>
+    </nav>
+    <div class="page-container">
+
+        <form  class="register" id="register" action="" method="GET" style="display: noe;">
+          <div class="login-div">
+            <i class="fa fa-solid fa-icons"></i>            
+          </div>
+          <div class="form-entries">
+            <h1>Register Now!</h1>
+            <div class="form-inputs">
+              <h3>Username</h3><input type="text" name="username" placeholder="Username">
+              <h3>Password</h3><input type="text" name="password" placeholder="Password">
+              <h3>Confirm Password</h3><input type="password" name="confirm_password" placeholder="Password">
+              <button name="submit"> Submit </button>
+              <p>Already have an account? <span onclick="switch_view()">Log In!</span></p>
+
+
+            </div>
+          </div>
+        </form>
+
+        <form class="login" action="" method="GET" id="login"  >
+          <div class="login-div">
+            <i class="fa-brands fa-napster"></i>
+          </div>
+          <div class="form-entries">
+            <h1>Log In!</h1>
+            <div class="form-inputs">
+              <h3>Username</h3><input type="text" name="username_login" placeholder="Username">
+              <h3>Password</h3><input type="password" name="password_login" placeholder="Password">
+              <button name="login"> Log In </button>
+              <p>Don't have an account? <span onclick="switch_view()">Register!</span></p>
+
+            </div>
+          </div>
+        </form>
+        
+    </div>
+</body>
+
+<script>
+  var toggle = true;
+  var login_form = document.getElementById("login");
+  var register_form = document.getElementById("register");
+
+  function switch_view(){
+    toggle = !toggle;
+    if (toggle == true) {
+      login_form.style.display = "block";
+      register_form.style.opacity="0"
+      login_form.style.opacity="1";
+
+      setTimeout(function(){
+        register_form.style.display="none";
+    }, 500);
+    }
+    else if (toggle == false) {
+      register_form.style.display = "block";
+      login_form.style.opacity = "0"
+      register_form.style.opacity="1";
+      
+      setTimeout(function(){
+        login_form.style.display="none";
+    }, 500);
+    }
+  }
+</script>
+</html>
